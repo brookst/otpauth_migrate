@@ -1,0 +1,5 @@
+[tool.black]
+line-length = 88
+target-version = ['py37']
+include = '\.pyi?$'
+exclude = '''otpauth_migrate/(bin|lib)|otpauth_migrate_pb2.py'''
