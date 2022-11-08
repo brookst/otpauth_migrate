@@ -21,6 +21,8 @@ def parse(code):
 
     # Unpack protobuf layer
     payload = MigrationPayload.FromString(data)
+    if not payload.otp_parameters:
+        raise ValueError("No payloads found")
     for parameters in payload.otp_parameters:
         # Print parameters incase the type/algorithm is needed
         print(parameters)
@@ -32,6 +34,7 @@ def parse(code):
 
 if __name__ == "__main__":
     from argparse import ArgumentParser
+    from google.protobuf.message import DecodeError
     from sys import exit
 
     parser = ArgumentParser(
@@ -45,8 +48,16 @@ if __name__ == "__main__":
     if args.code != "-":
         parse(args.code)
     else:
-        try:
-            parse(input())
-        except KeyboardInterrupt:
-            parser.print_help()
-            exit(1)
+        while True:
+            try:
+                parse(input())
+                break
+            except KeyboardInterrupt:
+                parser.print_help()
+                exit(1)
+            except ValueError:
+                pass  # Ignore spurious input
+            except DecodeError:
+                pass  # Ignore spurious input
+            except EOFError:
+                break  # No more input
