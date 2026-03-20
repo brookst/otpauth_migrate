@@ -11,4 +11,18 @@ If not specified as an argument, input is awaited on stdin. This can be used to 
     
 `zbarcam` is in the `zbar-tools` package on Ubuntu and is part of [ZBar suite](https://github.com/mchehab/zbar).
 
+## Setup
+Clone the repo with:
+
+    git clone https://github.com/brookst/otpauth_migrate.git
+    cd otpauth_migrate
+
+Set up a virtual environment with:
+
+    python -m venv .
+    pip install -r requirements
+
+The `otpauth_migrate` script should then work.
+
+## Attribution
 Uses Google protobuf definition from https://alexbakker.me/post/parsing-google-auth-export-qr-code.html
