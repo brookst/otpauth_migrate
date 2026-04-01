@@ -20,7 +20,8 @@ Clone the repo with:
 Set up a virtual environment with:
 
     python -m venv .
-    pip install -r requirements
+    source ./bin/activate
+    pip install -r requirements.txt
 
 The `otpauth_migrate` script should then work.
 
